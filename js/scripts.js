@@ -24,7 +24,7 @@
       maxBounds: nycBounds, // sets the max bounds, limited where the user can pan to
       maxZoom: 11 // sets the maximum zoom level
 
-      
+
     });
 
     map.on('load', function() {
@@ -47,27 +47,27 @@
             0,
             '#f0c755',
             1,
-            '#f0c755',
+            '#efbd4b',
             2,
             '#edb341',
             3,
-            '#edb341',
+            '#eca937',
             4,
             '#eb9f2f',
             5,
-            '#eb9f2f',
+            '#e99426',
             6,
             '#e88a1f',
             7,
-            '#e88a1f',
+            '#e67f18',
             8,
             '#e47312',
             9,
-            '#e47312',
+            '#e2670e',
             10,
             '#e05b0c',
             12,
-            '#e05b0c',
+            '#dd4d0c',
             13,
             '#da3e0d',
             15,
