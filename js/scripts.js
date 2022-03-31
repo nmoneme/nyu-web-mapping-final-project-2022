@@ -107,7 +107,7 @@
       })
 
 
-
+      // insert click function for popups
       map.on('click', 'neighborhoods-districts-fill', function(e) {
         map.getCanvas().style.cursor = 'pointer';
 
@@ -116,7 +116,7 @@
         var cd_name = e.features[0].properties.cd_name;
         var disparities = e.features[0].properties.disparities;
         var avg_income = e.features[0].properties.avg_income;
-
+        // define popups
         var popupText=`
           <p><strong>${borough}</strong></p>
           <p><strong>${cd_name}</strong></p>
@@ -132,7 +132,7 @@
 
       })
     });
-
+    // insert function for hover
     map.on('mouseenter', 'neighborhoods-districts-fill', function(e) {
       map.getCanvas().style.cursor = 'pointer';
 
@@ -141,7 +141,7 @@
       var cd_name = e.features[0].properties.cd_name;
       var disparities = e.features[0].properties.disparities;
       var avg_income = e.features[0].properties.avg_income;
-
+      // add popup to hover
       var popupText=`
         <p><strong>${borough}</strong></p>
         <p><strong>${cd_name}</strong></p>
@@ -156,7 +156,7 @@
             .addTo(map);
 
     });
-
+    // close popup when mouese leaves the area
     map.on('mouseleave', 'neighborhoods-districts-fill', () => {
       map.getCanvas().style.cursor = '';
       popup.remove();
