@@ -7,88 +7,138 @@
 
   <title>Health Disparities in NYC</title>
 
+  <!-- CSS only -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
   <link rel="stylesheet" href="css/styles.css">
 
 
 </head>
+
+
+
 <body>
-<style>
-  #overlay {
-    font-family: sans-serif;
-    position: absolute;
-    z-index: 1;
-    top: 10px;
-    left: 10px;
-    background: #f5eabc;
-    padding: 15px;
-    border-radius: 5px;
-    max-width: 400px;
-  }
+  <div id='parent-container'>
 
-  h3 {
-    margin-top: 0;
-    text-align: center;
-  }
-  h2 {
-    margin-top: 0;
-    text-align: center;
-    font-size: 18px;
-  }
+    <style>
+      #overlay {
+        font-family: sans-serif;
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        left: 10px;
+        background: #f5eabc;
+        padding: 15px;
+        border-radius: 5px;
+        max-width: 400px;
+      }
 
-  h4 {
-    margin-top: 0;
-    text-align: center;
-    font-size: 12px;
-  }
+      h3 {
+        margin-top: 0;
+        text-align: center;
+      }
+      h2 {
+        margin-top: 0;
+        text-align: center;
+        font-size: 18px;
+      }
 
-  
-   </style>
-
-  <div id="overlay">
-      <h3>Health Disparities in Neighborhoods Across New York City</h3>
-      <p></p>
-      <p></p>
-      <p>For more information, visit the <a href="https://www.cdc.gov/pcd/issues/2020/19_0325a.htm#1">Centers for Disease Control and Prevention</a> official website.</p>
-      <p></p>
+      h4 {
+        margin-top: 0;
+        text-align: center;
+        font-size: 12px;
+      }
 
 
+       </style>
+
+         <!-- Navbar -->
+       <nav class="navbar navbar-expand-lg navbar-dark " style="background-color:#1873b9;">
+         <!-- Container wrapper -->
+         <div class="container-fluid">
+
+           <!-- Navbar brand -->
+           <a class="navbar-brand" href="#"><i class="fa-solid fa-heart-pulse"></i>NYC Health Disparities</a>
+
+           <!-- Toggle button -->
+           <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+             <i class="fas fa-bars"></i>
+           </button>
+
+           <!-- Collapsible wrapper -->
+           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+             </ul>
+
+             <!-- Icons (show up on the right) -->
+             <ul class="navbar-nav d-flex flex-row me-1">
+               <!-- Link -->
+               <li class="nav-item">
+                 <a class="nav-link" href="#">About</a>
+               </li>
+               <li class="nav-item me-3 me-lg-0">
+                 <a class="nav-link" href="#"><i class="fab fa-github"></i></a>
+               </li>
+             </ul>
+
+           </div>
+         </div>
+         <!-- Container wrapper -->
+       </nav>
+       <!-- Navbar -->
+
+      <div id="overlay">
+          <h3><strong>Health Disparities in Neighborhoods Across New York City</strong></h3>
+          <p>By looking at community district-level health outcomes, needs across different neighborhoods can be identified. </p>
+          <p></p>
+          <p>For more information, visit the <a href="https://www.cdc.gov/pcd/issues/2020/19_0325a.htm#1">Centers for Disease Control and Prevention</a> official website.</p>
+          <p></p>
+
+
+        </div>
+
+
+      <div id='mapContainer'>
+        <!-- where mapboxgl inserts map -->
+        </div>
+
+        <!-- <div class="map-overlay" id="legend"> -->
+        <div class='map-overlay' id='features'>
+
+          <div id='pd'>
+            <p><strong>Hover over a neighborhood to see the number of disparities!</strong></p>
+          </div>
+        </div>
+
+        <div class='legend' id='legend'>
+
+          <h4>Health Disparities</h4>
+
+          <div><span style="background-color: #EBF37D"></span>0</div>
+          <div><span style="background-color: #efbd4b"></span>1</div>
+          <div><span style='background-color: #edb341'></span>2</div>
+          <div><span style="background-color: #eca937"></span>3</div>
+          <div><span style="background-color: #eb9f2f"></span>4</div>
+          <div><span style="background-color: #e99426"></span>5</div>
+          <div><span style="background-color: #e88a1f"></span>6</div>
+          <div><span style="background-color: #e67f18"></span>7</div>
+          <div><span style="background-color: #e47312"></span>8</div>
+          <div><span style="background-color: #e2670e"></span>9</div>
+          <div><span style="background-color: #e05b0c"></span>10</div>
+          <div><span style="background-color: #dd4d0c"></span>12</div>
+          <div><span style="background-color: #da3e0d"></span>13</div>
+          <div><span style="background-color: #d72b0f"></span>15</div>
+          <div><span style="background-color: #d40d12"></span>17</div>
+        </div>
     </div>
-
-  <div id='mapContainer'>
-    <!-- where mapboxgl inserts map -->
-    </div>
-
-    <!-- <div class="map-overlay" id="legend"> -->
-    <div class='map-overlay' id='features'>
-      <h2>NYC Health Disparities</h2>
-      <div id='pd'>
-        <p>Hover over a neighborhood to see the number of disparities!</p>
-      </div>
-    </div>
-
-    <div class='map-overlay' id='legend'>
-
-      <h4>Health Disparities</h4>
-
-      <div><span style="background-color: #f0c755"></span>0</div>
-      <div><span style="background-color: #efbd4b"></span>1</div>
-      <div><span style='background-color: #edb341'></span>2</div>
-      <div><span style="background-color: #eca937"></span>3</div>
-      <div><span style="background-color: #eb9f2f"></span>4</div>
-      <div><span style="background-color: #e99426"></span>5</div>
-      <div><span style="background-color: #e88a1f"></span>6</div>
-      <div><span style="background-color: #e67f18"></span>7</div>
-      <div><span style="background-color: #e47312"></span>8</div>
-      <div><span style="background-color: #e2670e"></span>9</div>
-      <div><span style="background-color: #e05b0c"></span>10</div>
-      <div><span style="background-color: #dd4d0c"></span>12</div>
-      <div><span style="background-color: #da3e0d"></span>13</div>
-      <div><span style="background-color: #d72b0f"></span>15</div>
-      <div><span style="background-color: #d40d12"></span>17</div>
-    </div>
-
   <!-- your content here... -->
+  <script src="https://kit.fontawesome.com/4b2befe69d.js" crossorigin="anonymous"></script>
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
   <script
   src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -97,33 +147,7 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
   <script src="js/scripts.js"></script>
   <script>
-    // // create legend
-    // var legend = document.getElementById('legend');
-    //
-    // layers.forEach((layer, i) => {
-    // var color = colors[i];
-    // var item = document.createElement('div');
-    // var key = document.createElement('span');
-    // key.className = 'legend-key';
-    // key.style.backgroundColor = color;
-    //
-    // var value = document.createElement('span');
-    // value.innerHTML = `${layer}`;
-    // item.appendChild(key);
-    // item.appendChild(value);
-    // legend.appendChild(item);
-    // });
 
-// // change info window on hover
-//     map.on('mousemove', (event) => {
-//     var neighborhood = map.queryRenderedFeatures(event.point, {
-//     layers: ['neighborhoodsdata']
-//     });
-//     document.getElementById('pd').innerHTML = states.length
-//     ? `<h3>${borough[0].properties.New_York_City_Population_By_Community_Districts_Borough}</h3><p><strong><em>${states[0].properties.density}</strong> people per square mile</em></p>`
-//     : `<p>Hover over a state!</p>`;
-//     });
-//     });
 
   </script>
 </body>

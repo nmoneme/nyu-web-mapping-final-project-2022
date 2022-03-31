@@ -16,13 +16,12 @@
     // bounds for a citywide view of New York
     var nycBounds = [[-74.333496,40.469935], [-73.653717,40.932190]]
 
-
     var map = new mapboxgl.Map({
       container: 'mapContainer', // HTML container id
       style: 'mapbox://styles/mapbox/streets-v9', // style URL
       bounds: nycBounds, // sets initial bounds instead of center + zoom
       maxBounds: nycBounds, // sets the max bounds, limited where the user can pan to
-      maxZoom: 11 // sets the maximum zoom level
+      maxZoom: 12 // sets the maximum zoom level
 
 
     });
@@ -45,7 +44,7 @@
             ['linear'],
             ['get', 'disparities'],
             0,
-            '#f0c755',
+            '#EBF37D',
             1,
             '#efbd4b',
             2,
@@ -107,6 +106,8 @@
         }
       })
 
+
+
       map.on('click', function(e) {
         var features = map.queryRenderedFeatures(e.point)
         var featureOfInterestProperties = features[0].properties
@@ -124,23 +125,42 @@
         map.getSource('selected-feature').setData(featureOfInterestGeometry)
 
 
-        var borough = featureOfInterestProperties['New_York_City_Population_By_Community_Districts_Borough']
+        var borough = featureOfInterestProperties['Borough']
         var cdName = featureOfInterestProperties['cd_name']
         var disparities = featureOfInterestProperties['disparities']
         var avg_income = featureOfInterestProperties['avg_income']
 
-
-        $('#overlay-content-area').html(`
-          <h4>${borough}</h4>
-          <p>${cdName}</p>
-          <p>Disparities: ${numeral(disparities).format('0.0a')}</p>
-          <p>Average Income: ${numeral(avg_income).format('0.0a')}</p>
-        `)
-
       })
     })
 
+    map.on('mouseenter', 'neighborhoods-districts-fill', function(e) {
+      map.getCanvas().style.cursor = 'pointer';
 
+      var coordinates = e.lngLat;
+      var borough = e.features[0].properties.borough;
+      var cd_name = e.features[0].properties.cd_name;
+      var disparities = e.features[0].properties.disparities;
+      var avg_income = e.features[0].properties.avg_income;
+
+      var popupText=`
+        <p><strong>${borough}</strong></p>
+        <p><strong>${cd_name}</strong></p>
+        <p>Disparities: ${disparities}</p>
+        <p>Average Income: ${avg_income}</p>
+      `;
+
+      popup = new mapboxgl.Popup({ offset: 10 });
+
+      popup.setLngLat(coordinates)
+            .setHTML(popupText)
+            .addTo(map);
+
+    });
+
+    map.on('mouseleave', 'neighborhoods-districts-fill', () => {
+      map.getCanvas().style.cursor = '';
+      popup.remove();
+    });
 
     $('#toggle-population').on('click', function() {
       var visibility = map.getLayoutProperty('neighborhoods-districts-fill', 'visibility')
