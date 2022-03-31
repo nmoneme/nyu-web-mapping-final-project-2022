@@ -108,30 +108,30 @@
 
 
 
-      map.on('click', function(e) {
-        var features = map.queryRenderedFeatures(e.point)
-        var featureOfInterestProperties = features[0].properties
+      map.on('click', 'neighborhoods-districts-fill', function(e) {
+        map.getCanvas().style.cursor = 'pointer';
 
+        var coordinates = e.lngLat;
+        var borough = e.features[0].properties.borough;
+        var cd_name = e.features[0].properties.cd_name;
+        var disparities = e.features[0].properties.disparities;
+        var avg_income = e.features[0].properties.avg_income;
 
+        var popupText=`
+          <p><strong>${borough}</strong></p>
+          <p><strong>${cd_name}</strong></p>
+          <p>Disparities: ${disparities}</p>
+          <p>Average Income: ${avg_income}</p>
+        `;
 
-        var boroCd = featureOfInterestProperties['boro_cd']
-        // look up the feature in cleanData that matches this boro_cd code
-        featureOfInterestGeometry = cleanData.features.find(function(feature) {
-          return feature.properties['boro_cd'] === boroCd
-        })
+        popup = new mapboxgl.Popup({ offset: 10 });
 
-        console.log('the geometry', featureOfInterestGeometry)
-        // use this geometry to update the source for the selected layer
-        map.getSource('selected-feature').setData(featureOfInterestGeometry)
-
-
-        var borough = featureOfInterestProperties['Borough']
-        var cdName = featureOfInterestProperties['cd_name']
-        var disparities = featureOfInterestProperties['disparities']
-        var avg_income = featureOfInterestProperties['avg_income']
+        popup.setLngLat(coordinates)
+              .setHTML(popupText)
+              .addTo(map);
 
       })
-    })
+    });
 
     map.on('mouseenter', 'neighborhoods-districts-fill', function(e) {
       map.getCanvas().style.cursor = 'pointer';

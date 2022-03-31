@@ -7,6 +7,15 @@
 
   <title>Health Disparities in NYC</title>
 
+<!-- favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
   <!-- CSS only -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,8 +36,9 @@
       #overlay {
         font-family: sans-serif;
         position: absolute;
+        color: #142870;
         z-index: 1;
-        top: 10px;
+        top: 70px;
         left: 10px;
         background: #f5eabc;
         padding: 15px;
@@ -61,7 +71,7 @@
          <div class="container-fluid">
 
            <!-- Navbar brand -->
-           <a class="navbar-brand" href="#"><i class="fa-solid fa-heart-pulse"></i>NYC Health Disparities</a>
+           <a class="navbar-brand" href="#"><i class="fa-solid fa-heart-pulse"></i> NYC Health Disparities</a>
 
            <!-- Toggle button -->
            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,7 +91,7 @@
                  <a class="nav-link" href="#">About</a>
                </li>
                <li class="nav-item me-3 me-lg-0">
-                 <a class="nav-link" href="#"><i class="fab fa-github"></i></a>
+                 <a class="nav-link" href="https://github.com/nmoneme"><i class="fab fa-github"></i></a>
                </li>
              </ul>
 
@@ -92,11 +102,13 @@
        <!-- Navbar -->
 
       <div id="overlay">
-          <h3><strong>Health Disparities in Neighborhoods Across New York City</strong></h3>
-          <p>By looking at community district-level health outcomes, needs across different neighborhoods can be identified. </p>
-          <p></p>
-          <p>For more information, visit the <a href="https://www.cdc.gov/pcd/issues/2020/19_0325a.htm#1">Centers for Disease Control and Prevention</a> official website.</p>
-          <p></p>
+          <h3><strong>Health Disparities in Communities Across New York City</strong></h3>
+          <p><em><small>health disparitiy (n.): a difference in health due to a persons social, economic, and/or environmental disadvantage</small></em></p>
+          <p>The map shows community district-level health outcomes present in New York City. Public health agencies allocate funding and resources to areas based on the current state of the community.</p>
+          <p>Community districts are represented by community boards. These community boards provide a forum for addressing the needs of the community, making them a useful geographic unit for examining health information and turning data into action.</p>
+          <p>___________________________________________</p>
+          <p><small>For more information, visit the <a href="https://www.cdc.gov/pcd/issues/2020/19_0325a.htm#1">Centers for Disease Control and Prevention</a> official website.</small></p>
+          <p><small>Data Sources: <a href="https://www1.nyc.gov/site/doh/data/data-publications/profiles.page">New York City Department of Health and Mental Hygiene (DOHMH)</a> and <a href="https://data.cccnewyork.org/data/table/66/median-incomes#66/107/62/a/a">Citizens' Committee for Children of New York</a></small>
 
 
         </div>
@@ -134,7 +146,7 @@
           <div><span style="background-color: #d72b0f"></span>15</div>
           <div><span style="background-color: #d40d12"></span>17</div>
         </div>
-    </div>
+  </div>
   <!-- your content here... -->
   <script src="https://kit.fontawesome.com/4b2befe69d.js" crossorigin="anonymous"></script>
   <!-- JavaScript Bundle with Popper -->
